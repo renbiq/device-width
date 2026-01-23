@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="绿色家园 - 致力于环境保护与可持续发展的公益组织">
+    <meta name="keywords" content="环保, 可持续发展, 绿色生活, 低碳, 节能减排, 生态保护">
+    <title>绿色家园 | Green Home - 环境保护公益平台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2d7d46;
+            --light-green: #4ade80;
+            --dark-green: #166534;
+            --forest-green: #15803d;
+            --soft-cream: #fefce8;
+            --earth-brown: #78350f;
+            --sky-blue: #7dd3fc;
+            --gradient-green: linear-gradient(135deg, #22c55e 0%, #15803d 50%, #166534 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 顶部导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-green);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--forest-green);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 装饰性浮动元素 */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .leaf:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .leaf:nth-child(2) { top: 20%; right: 10%; animation-delay: 2s; }
+        .leaf:nth-child(3) { top: 60%; left: 8%; animation-delay: 4s; }
+        .leaf:nth-child(4) { top: 75%; right: 5%; animation-delay: 6s; }
+        .leaf:nth-child(5) { top: 40%; left: 2%; animation-delay: 8s; }
+        .leaf:nth-child(6) { bottom: 15%; left: 15%; animation-delay: 1s; }
+        .leaf:nth-child(7) { top: 30%; right: 3%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.15);
+            padding: 0.5rem 1.25rem;
+            border-radius: 30px;
+            font-size: 0.875rem;
+            color: var(--dark-green);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark-green);
+        }
+
+        .hero-title span {
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #4b5563;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* 统计数据区域 */
+        .stats {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(220,252,231,0.9) 100%);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* 项目特色区域 */
+        .features {
+            padding: 5rem 2rem;
+            background: #dcfce7;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--gradient-green);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-green);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.35rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* 行动呼吁区域 */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--gradient-green);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-desc {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--dark-green);
+            border: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 合作伙伴区域 */
+        .partners {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .partners-title {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0.6;
+        }
+
+        .partner-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #064e3b;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-green);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-green);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 1rem 4rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .cta-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <div class="logo-text">绿色家园</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#projects">环保项目</a></li>
+            <li><a href="#impact">社会影响</a></li>
+            <li><a href="#join">加入我们</a></li>
+        </ul>
+    </nav>
+
+    <!-- 浮动装饰元素 -->
+    <div class="floating-elements">
+        <span class="leaf">🍃</span>
+        <span class="leaf">🌿</span>
+        <span class="leaf">🌾</span>
+        <span class="leaf">🍀</span>
+        <span class="leaf">🌻</span>
+        <span class="leaf">🌳</span>
+        <span class="leaf">🌲</span>
+    </div>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                🌍 2024年度优秀环保公益组织
+            </div>
+            <h1 class="hero-title">
+                守护地球<span>绿色家园</span><br>
+                共建可持续未来
+            </h1>
+            <p class="hero-subtitle">
+                我们致力于环境保护与生态恢复，通过科学研究、社区参与和政策倡导，
+                推动人与自然和谐共生。每一份努力，都是对地球的温柔守护。
+            </p>
+            <div class="cta-buttons">
+                <a href="#join" class="btn btn-primary">
+                    🤝 立即参与
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    📖 了解更多
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 统计数据 -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🌲</div>
+                <div class="stat-number">127,000+</div>
+                <div class="stat-label">累计植树数量</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">85,000+</div>
+                <div class="stat-label">志愿者参与</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🏞️</div>
+                <div class="stat-number">320+</div>
+                <div class="stat-label">保护区项目</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🌏</div>
+                <div class="stat-number">45+</div>
+                <div class="stat-label">覆盖省份地区</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目特色 -->
+    <section class="features" id="projects">
+        <div class="section-header">
+            <span class="section-tag">核心项目</span>
+            <h2 class="section-title">我们的环保行动</h2>
+            <p class="section-desc">
+                从森林保护到海洋清洁，从可再生能源到生态农业，
+                我们用行动践行环保承诺。
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🌳</div>
+                <h3 class="feature-title">森林恢复计划</h3>
+                <p class="feature-desc">
+                    在退化的土地上开展大规模植树造林活动，恢复生态系统，增加碳汇能力，
+                    为野生动物提供栖息地。
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🌊</div>
+                <h3 class="feature-title">海洋保护行动</h3>
+                <p class="feature-desc">
+                    开展沿海清洁活动，减少海洋塑料污染，保护海洋生物多样性，
+                    推动建设海洋保护区。
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">♻️</div>
+                <h3 class="feature-title">循环经济推广</h3>
+                <p class="feature-desc">
+                    推广垃圾分类与回收利用，倡导绿色消费理念，帮助企业和社区实现
+                    零废弃目标。
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔬</div>
+                <h3 class="feature-title">环境科研支持</h3>
+                <p class="feature-desc">
+                    资助环境科学研究项目，探索气候变化应对策略，开发可持续技术解决方案。
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">环保教育普及</h3>
+                <p class="feature-desc">
+                    走进学校和社区，开展环保知识宣传，培养青少年的环境意识和生态责任感。
+                </p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">社区合作共建</h3>
+                <p class="feature-desc">
+                    与当地社区合作，开发可持续的生计项目，让环境保护与经济发展相得益彰。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 行动呼吁 -->
+    <section class="cta-section" id="join">
+        <div class="cta-content">
+            <h2 class="cta-title">加入我们，共同行动</h2>
+            <p class="cta-desc">
+                无论是捐款支持、志愿服务还是日常实践，每个人都可以为地球做出贡献。
+                现在就加入我们，成为环保行动的一分子，让改变从你开始！
+            </p>
+            <a href="#" class="btn btn-white">
+                🌱 成为志愿者
+            </a>
+        </div>
+    </section>
+
+    <!-- 合作伙伴 -->
+    <section class="partners">
+        <div class="partners-title">合作伙伴与支持机构</div>
+        <div class="partners-logos">
+            <div class="partner-logo">🏛️ 联合国环境署</div>
+            <div class="partner-logo">🌍 世界自然基金会</div>
+            <div class="partner-logo">🔬 中科院生态研究所</div>
+            <div class="partner-logo">🏫 北京大学环境学院</div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于绿色家园</h4>
+                <p>
+                    绿色家园成立于2010年，是一家致力于环境保护与可持续发展的非营利组织。
+                    我们相信，每个人都可以为地球做出贡献。
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📱</a>
+                    <a href="#" class="social-link">📧</a>
+                    <a href="#" class="social-link">🐦</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>快速链接</h4>
+                <div class="footer-links">
+                    <a href="#">关于我们</a>
+                    <a href="#">项目介绍</a>
+                    <a href="#">最新动态</a>
+                    <a href="#">志愿者招募</a>
+                    <a href="#">合作伙伴</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>参与方式</h4>
+                <div class="footer-links">
+                    <a href="#">在线捐款</a>
+                    <a href="#">志愿服务</a>
+                    <a href="#">企业合作</a>
+                    <a href="#">活动报名</a>
+                    <a href="#">资料下载</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <p>📍 北京市朝阳区环保大厦18层</p>
+                <p>📞 400-888-6666</p>
+                <p>📧 contact@greenhome.org</p>
+                <p>🕐 周一至周五 9:00-18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 绿色家园 Green Home. All Rights Reserved. | 京ICP备12345678号</p>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+        });
+    </script>
+</body>
+</html>
